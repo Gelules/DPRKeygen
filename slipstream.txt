@@ -1,0 +1,31 @@
+                              /\
+_________________    ________/  \____________  ______________
+|       | _____ |slip|   |\       /      |  |__| __ |       |
+|   ____| |___| |____|   | \     /|    __|  ___|    |   ____|
+|   |  |   _____|  ____  | /     \|__    |  |__| /\ |   |
+|   |  |        | /___/  |/__    _\      |     | \/ |   |
+|___|  |________|________|   \  / |______|_____|_/\_|___|
+                              \/
+
+Red Star OS 3.0 Server x86 *cracked*
+````````````````````````````````````
+
+Sure, there's probably an easier way but i'm lazy and can't be bothered to recreate the iso in a linux vm.
+
+So.. you need to burn boot.iso and rss3_32_key_gui_20131212.iso
+
+Insert the boot cd (or mount it in your VM) and boot from it, when you get to the blue install screen swap media to rss3_32_key_gui_20131212
+
+This first screen asks for a serial, but it accepts any serial (even a blank one) if you boot from boot.iso, which has 12 bytes nopped out in /sbin/loader of initrd. It'd be appreciated if some reverser more skilled than me can take a look at the serial algorithm and code a keygen. I believe the algo is located at 0x806A820.
+
+Don't ask me how I got this. Also don't ask me why the redstar guys added serial protection since redstar 2.x.
+
+There exists an x64 version of this, but I don't have that, just the x86 version.
+
+I also do not have the desktop version, just the server version, but since this is the first ever leak of Red Star OS Server, and the first ever leak of redstar 3.0, why aren't you thanking me already?!
+
+Enjoy!
+
+~ slipstream
+
+PS: umad DPRK?
