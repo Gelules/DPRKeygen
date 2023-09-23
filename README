@@ -11,9 +11,9 @@ Warning:
 
 How does it work:
     It extracts the memory from a virtual machine (tested on QEMU/KVM and
-    nothing else for now), search for a specific pattern and print the licence
-    key. You must first validate a blank licence key on the screen menu asking
-    for the licence key.
+    nothing else for now), searches for a specific pattern and prints the
+    licence key. You must first validate a blank licence key on the screen menu
+    asking for the licence key.
 
 How to make it work:
     Boot a Red Star OS 3 Server on a virtual machine (preferably QEMU/KVM for
@@ -23,7 +23,7 @@ How to make it work:
 
     Then execute with root permissions the script with the PID of the virtual
     machine as a paramater. Wait for some time (1 to 3 minutes depending on your
-    computer, on mine it takes 1 minute and 15 seconds), then the key appears.
+    computer, on mine it takes just above a minute), then the key appears.
 
     The script does not check the PID, so whatever you send in, it will do its
     business without any verification. Please provide the correct PID.
@@ -33,7 +33,7 @@ Why?:
     had to put first a boot.iso file and then hot swap with the real iso file to
     bypass the licence key. slipstream then ask if someone would try to make a
     keygen out of it. I searched for the keygen on Internet but apparently, no
-    one has ever been published. Now, it *almost* does.
+    one has ever been published. Now, it *almost* is.
 
 Technically:
     I made everything with Binary Ninja.
@@ -46,7 +46,7 @@ Technically:
 
     The funny part is: the keygen is already included. It generates a licence
     key from the machine id. So, exporting the code would be simple enough,
-    write?
+    right?
 
     Now comes the interesting part, how all of this is actually working.
     0x0805214b is the generation of the variable that I call "machind_id",
@@ -82,7 +82,7 @@ Technically:
 
     Back to gen_1, the loop writes into "licence_key".
 
-    The it goes back to the main, and strcmp machine_id and licence_key.
+    Then it goes back to the main, and strcmp machine_id and licence_key.
 
     I have a lot of errors after exporting the code. A lot of times, the stack
     is smashed. This is why I still cannot make a keygen out of it.
@@ -90,7 +90,7 @@ Technically:
     But I'm still working on it on my very limited free time.
 
 How to change the ISO:
-    If you ever encounter the ISO and want to modify it, this is how you can do
+    If you ever download the ISO and want to modify it, this is how you can do
     it.
 
     Mount the ISO file into a temporary directory.
@@ -136,4 +136,4 @@ Requirements:
     * cut
     * gdb
     * grep
-   * sed
+    * sed
