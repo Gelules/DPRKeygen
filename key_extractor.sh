@@ -1,9 +1,9 @@
 #!/bin/sh
 
-# DPRKeygen: a Red Star OS 3 Server Licence Key Extractor
+# DPRKeygen: a Red Star OS 3 Server License Key Extractor
 
 # Dump all the memory process of a virtual machine from its PID, search for the
-# Red Star OS 3 Server licence key and print it
+# Red Star OS 3 Server license key and print it
 
 # It works with QEMU/KVM. I have not tried it on any other virtual software, but
 # it *should* work.
@@ -31,9 +31,9 @@ grep rw-p /proc/$1/maps \
         "dump memory $1-$start-$stop.dump 0x$start 0x$stop" >/dev/null 2>&1 ; \
     interesting_file=$(grep -E '^([a-zA-Z0-9]{4}-){4}[a-zA-Z0-9]{4}$' *.dump 2>&1 | cut -d':' -f2 | sed 's/ //') ; \
     if [ -n "$interesting_file" ] ; then \
-        echo "Searching for the licence key" ; \
+        echo "Searching for the license key" ; \
         strings "$interesting_file" > "$interesting_file.strings" ; \
-        echo -n "Licence Key is: " ; \
+        echo -n "License Key is: " ; \
         grep -E '^([a-zA-Z0-9]{4}-){4}[a-zA-Z0-9]{4}$' "$interesting_file.strings" | cut -d':' -f3 ; \
         rm *.dump *.strings ; \
         exit 0; \
