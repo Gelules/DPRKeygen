@@ -16,15 +16,14 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+#include "utilities.h"
+
 #include <endian.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
 #include <unistd.h>
-
-#include "md5.h"
-#include "utilities.h"
 
 void MD5_Transform(uint32 *buf, uint32 const *in);
 
@@ -353,17 +352,9 @@ void md5sum(char *const hashsum, MD5_CTX *const hashctx) {
     }
 }
 
-void key_format(unsigned char *key)
-{
-    key[20] = '\0';
-    for (unsigned i = 0; i < 24; ++i)
-        if ('a' <= key[i] && key[i] <= 'z')
-            key[i] -= 32;
-}
-
 void usage(void)
 {
-    printf("WRONG KEY FORMAT: 20 characters in uppercase starting with RSS3");
+    printf("WRONG KEY FORMAT: 16 characters in uppercase starting with RSS3");
     exit(1);
 }
 
@@ -373,29 +364,27 @@ int main(int argc, char *argv[])
         usage();
 
     unsigned char license[17] = { 0 };
-    license[16] = '\0';
     memcpy(license, argv[1], 16);
     license[16] = '\0';
     unsigned license_len = 16;
-    unsigned char digest[16] = { 0 };
+    char digest[16] = { 0 };
+    unsigned i = 0;
+    unsigned j = 0;
 
     MD5_CTX mdk = { 0 };
     MD5_Init(&mdk);
-    MD5_Update(&mdk, (unsigned char *)license, license_len);
-    md5sum((char *)digest, &mdk);
+    MD5_Update(&mdk, license, license_len);
+    md5sum(digest, &mdk);
 
-    key_format(digest);
     printf("License key: ");
 
-    unsigned i = 0;
-    unsigned j = 0;
     for (;i < 64; i += 4, j += 1)
     {
         unsigned value = mdk.buf[j];
         mdk.result[i] = value;
-        mdk.result[i + 1] = (char)(value >> 8) & 0x1f;
-        mdk.result[i + 2] = (char)(value >> 16) & 0x4f;
-        mdk.result[i + 3] = (char)(value >> 24) & 0x8f;
+        mdk.result[i + 1] = (value >> 8) & 0x1f;
+        mdk.result[i + 2] = (value >> 16) & 0x4f;
+        mdk.result[i + 3] = (value >> 24) & 0x8f;
     }
 
     for (unsigned i = 0; i < 10; ++i)
