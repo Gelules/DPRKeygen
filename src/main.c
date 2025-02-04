@@ -378,7 +378,7 @@ int main(int argc, char *argv[])
 
     printf("License key: ");
 
-    for (;i < 64; i += 4, j += 1)
+    for (; i < 64; i += 4, j += 1)
     {
         unsigned value = mdk.buf[j];
         mdk.result[i] = value;
@@ -387,7 +387,7 @@ int main(int argc, char *argv[])
         mdk.result[i + 3] = (value >> 24) & 0x8f;
     }
 
-    for (unsigned i = 0; i < 10; ++i)
+    for (i = 0; i < 10; ++i)
     {
         if (i && (i % 2) == 0)
             putchar('-');
