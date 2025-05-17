@@ -354,8 +354,8 @@ void md5sum(char *const hashsum, MD5_CTX *const hashctx) {
 
 void usage(void)
 {
-    fprintf(stderr, "dprkeygen KEY\n");
-    fprintf(stderr, "KEY FORMAT: 16 uppercase characters starting with RSS3\n");
+    fprintf(stderr, "dprkeygen MACHINE_ID\n");
+    fprintf(stderr, "MACHINE_ID: 16 uppercase characters starting with RSS3\n");
     exit(1);
 }
 
