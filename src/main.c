@@ -354,7 +354,8 @@ void md5sum(char *const hashsum, MD5_CTX *const hashctx) {
 
 void usage(void)
 {
-    printf("WRONG KEY FORMAT: 16 characters in uppercase starting with RSS3");
+    fprintf(stderr, "dprkeygen KEY");
+    fprintf(stderr, "KEY FORMAT: 16 uppercase characters starting with RSS3\n");
     exit(1);
 }
 
@@ -364,12 +365,14 @@ int main(int argc, char *argv[])
         usage();
 
     unsigned char license[17] = { 0 };
-    memcpy(license, argv[1], 16);
-    license[16] = '\0';
     unsigned license_len = 16;
     char digest[16] = { 0 };
     unsigned i = 0;
     unsigned j = 0;
+
+    memcpy(license, argv[1], 16);
+    license[16] = '\0';
+
 
     MD5_CTX mdk = { 0 };
     MD5_Init(&mdk);
